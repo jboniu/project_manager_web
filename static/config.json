@@ -1,0 +1,5 @@
+{
+    "ACCOUNT_HOST":"/account",
+    "SYSTEM_NAME":"/基于SpringBoot+Vue的科研课题项目管理系统",
+    "SYSTEM_SERVER_HOST":"/system"
+}
