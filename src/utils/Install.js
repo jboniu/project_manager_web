@@ -8,7 +8,7 @@ import StringUtils from 'utils/StringUtils';
 import QueryUtils from 'utils/QueryUtils';
 import DictUtils from 'utils/DictUtils';
 import RegionUtils from 'utils/RegionUtils';
-
+import GetDateUtils from 'utils/GetDateUtils';
 
 import axios from 'axios';
 import ConfigUtils from "./ConfigUtils";
@@ -25,6 +25,7 @@ export default{
         Vue.prototype.$queryUtils = QueryUtils;
         Vue.prototype.$configUtils = ConfigUtils;
         Vue.prototype.$regionUtils = RegionUtils;
+        Vue.prototype.$getDateUtils = GetDateUtils;
         Vue.directive("auth",{
             update(el,binding,vnode){
                 if(!AuthUtils.validate(vnode.data.attrs.code)){

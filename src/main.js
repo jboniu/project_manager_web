@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Message } from 'element-ui'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';    // 默认主题
+import 'element-ui/lib/theme-chalk/index.css';
+
 import Utils from 'utils/Install';
 import "babel-polyfill";
 import './mock/index.js';

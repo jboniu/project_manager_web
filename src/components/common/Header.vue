@@ -144,7 +144,7 @@
     }
     .header .logo{
         float: left;
-        width:250px;
+        width:350px;
         text-align: center;
     }
     .user-info {

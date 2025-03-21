@@ -78,6 +78,17 @@
                 prop="statusString"
                 label="项目状态">
             </el-table-column>
+            <el-table-column label="操作">
+                <template slot-scope="scope">
+                    <el-button
+                    size="mini"
+                    @click="showEdit(scope.$index, scope.row)">编辑</el-button>
+                    <el-button
+                    size="mini"
+                    type="danger"
+                    @click="showDelete(scope.$index, scope.row)">删除</el-button>
+                </template>
+            </el-table-column>
         </el-table>
         <el-pagination class="pagination"
                        layout="prev, pager, next"
@@ -668,7 +679,7 @@
                 }
             },
             //展示修改页面
-            showEdit() {
+            showEdit(index,row) {
                 if(this.currentRow != null) {
                     if (this.currentRow.canUpdate) {
                         console.log(this.currentRow);
@@ -688,13 +699,13 @@
                 }
             },
             //显示删除界面
-            showDelete() {
+            showDelete(index,row) {
                 if(this.currentRow == null){
                     this.$message.error("请先选择你要删除的项目!");
                     return;
                 }
 
-                this.$confirm(<p>你确定要删除<span style="color: red;">{this.currentRow.name}</span>?</p>, '提示', {
+                this.$confirm(<p>你确定要删除<span style="color: red;">{row.name}</span>?</p>, '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'

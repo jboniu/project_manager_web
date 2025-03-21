@@ -8,8 +8,8 @@
         <div class="ms-doc">
             <h3>README.md</h3>
             <article>
-                <h1>科研管理系统</h1>
-                <p>基于Vue.js 2.x系列 + Element UI后台管理系统 + SpringCloud微服务架构</p>
+                <h1>基于SpringBoot的项目管理系统</h1>
+                <p>基于Vue.js 2.x系列 + Element UI后台管理系统 + SpringBoot框架</p>
                 <h2>功能</h2>
                 <el-checkbox disabled checked>Element UI</el-checkbox>
                 <br>
@@ -23,12 +23,16 @@
                 <br>
             </article>
         </div>
-
+        <vRighgt></vRighgt>
     </div>
 </template>
 
 <script>
+    import vRighgt from '../../components/common/DrawerRight/Right.vue'
     export default {
+        components:{
+            vRighgt
+        },
         data: function(){
             return {}
         }
