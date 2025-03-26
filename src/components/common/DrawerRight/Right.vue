@@ -5,7 +5,7 @@
   </el-button>
   
   <el-drawer
-    title="项目进度"
+    :title="proName"
     :visible.sync="drawer"
     :direction="direction"
     :before-close="handleClose"
@@ -28,32 +28,45 @@
 
   <div class="block">
   <el-timeline>
-    <el-timeline-item :timestamp=(created_at?created_at:default_at) placement="top" :color=created_at?color:null>
+    <el-timeline-item timestamp="项目创建" placement="top" :color=created_at?color:null>
       <el-card>
         <h4>项目创建</h4>
-        <p v-if="created_at">{{ proName }} 创建于 {{ created_at }}</p>
-        <p v-if="created_at===''">暂无进度</p>
+        <div v-if="created_at">
+          <p>状态：{{ status }}</p>
+          <p>时间：{{ created_at }}</p>
+        </div>
+        <!-- <p v-if="created_at">{{ proName }} 创建于 {{ created_at }}</p> -->
+        <p v-else>暂无进度</p>
       </el-card>
     </el-timeline-item>
-    <el-timeline-item :timestamp=(submitted_at?submitted_at:default_at) placement="top" :color=submitted_at?color:null>
+    <el-timeline-item timestamp="项目申报" placement="top" :color=submitted_at?color:null>
       <el-card>
         <h4>项目申报</h4>
-        <p v-if="submitted_at">{{ proName }} 申报于 {{submitted_at}}</p>
-        <p v-if="submitted_at===''">暂无进度</p>
+        <div v-if="submitted_at">
+          <p>状态：{{ status }}</p>
+          <p>时间：{{ submitted_at }}</p>
+        </div>
+        <p v-else>暂无进度</p>
       </el-card>
     </el-timeline-item>
-    <el-timeline-item :timestamp=(modified_at?modified_at:default_at) placement="top" :color=modified_at?color:null>
+    <el-timeline-item timestamp="项目变更" placement="top" :color=modified_at?color:null>
       <el-card>
         <h4>项目变更</h4>
-        <p v-if="modified_at">{{ proName }} 变更于 {{modified_at}}</p>
-        <p v-if="modified_at===''">暂无进度</p>
+        <div v-if="modified_at">
+          <p>状态：{{ status }}</p>
+          <p>时间：{{ modified_at }}</p>
+        </div>
+        <p v-else>暂无进度</p>
       </el-card>
     </el-timeline-item>
-    <el-timeline-item :timestamp=(closed_at?closed_at:default_at) placement="top" :color=closed_at?color:null>
+    <el-timeline-item timestamp="项目结题" placement="top" :color=closed_at?color:null>
       <el-card>
         <h4>项目结题</h4>
-        <p v-if="closed_at">{{ proName }} 结题于 {{closed_at}}</p>
-        <p v-if="closed_at===''">暂无进度</p>
+        <div v-if="closed_at">
+          <p>状态：{{ status }}</p>
+          <p>时间：{{ closed_at }}</p>
+        </div>
+        <p v-else>暂无进度</p>
       </el-card>
     </el-timeline-item>
   </el-timeline>
@@ -74,11 +87,11 @@ export default {
         drawerSize:'25%',
         color:'#0bbd87',//图标颜色
         proName:'项目名',//项目名
+        status:'',//进度状态
         created_at:'',//创建
         submitted_at:'',//申报
         modified_at:'',//变更
         closed_at:'',//结题
-        default_at:'暂无进度',//默认时间戳
         activities: [{
             content: '支持使用图标',
             timestamp: '2018-04-12 20:46',
@@ -122,19 +135,8 @@ export default {
     },
     getDate(){
         //发送请求，获取当前项目的时间线
-        this.$axios.get(this.$config.SYSTEM_HOST + '/getDate').then((res) => {
-                            if(res.data.success){
-                                // localStorage.setItem("token",res.data.data);
-                                // this.$router.push("/admin");
-                            }else{
-                                // if(res.data.msg){
-                                //     this.$message({
-                                //         showClose: true,
-                                //         message: res.data.msg,
-                                //         type: 'error'
-                                //     });
-                                // }
-                            }
+        this.$axios.get(this.$config.SYSTEM_HOST + '/project_date/timeline/').then((res) => {
+                            
                         })
     }
   }
